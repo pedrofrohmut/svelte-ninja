@@ -33,7 +33,7 @@ ul {
   padding: 0;
   list-style-type: none;
   font-size: 1.45rem;
-  color: #aaac;
+  color: var(--gray);
 }
 
 li {
@@ -46,8 +46,9 @@ li:last-child {
 }
 
 .active {
-  color: #d91b42c0;
-  border-bottom: 2px solid #d91b42c0;
+  color: var(--red);
+  border-bottom: 2px solid var(--red);
   padding-bottom: 8px;
+  opacity: 0.85;
 }
 </style>

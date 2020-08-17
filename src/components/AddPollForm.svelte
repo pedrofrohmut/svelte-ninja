@@ -30,7 +30,7 @@ const handleSubmit = (e) => {
 form {
   width: 400px;
   margin: 0 auto;
-  color: #aaa;
+  color: var(--gray);
 }
 
 .form-group {
@@ -42,7 +42,7 @@ label {
 }
 
 input[type="text"] {
-  background-color: #aaa;
+  background-color: var(--gray);
   border: 2px solid transparent;
   width: 100%;
   padding: 7px 12px;
@@ -51,16 +51,16 @@ input[type="text"] {
 
 input[type="text"]:hover,
 input[type="text"]:focus {
-  background-color: #e5e5e5;
-  border-color: #e5e5e5;
-  box-shadow: 0px 0px 0px 2px #e5e5e5;
+  background-color: var(--lightGray);
+  border-color: var(--lightGray);
+  box-shadow: 0px 0px 0px 2px var(--lightGray);
 }
 
 input[type="submit"] {
   background-color: transparent;
-  color: #aaa;
+  color: var(--gray);
   font-weight: 600;
-  border: 2px solid #aaa;
+  border: 2px solid var(--gray);
   padding: 6px 30px;
   font-size: 1.1rem;
   outline: none;
@@ -68,8 +68,8 @@ input[type="submit"] {
 
 input[type="submit"]:hover,
 input[type="submit"]:focus {
-  color: #e5e5e5;
-  border-color: #e5e5e5;
-  box-shadow: 0px 0px 0px 2px #e5e5e5;
+  color: var(--lightGray);
+  border-color: var(--lightGray);
+  box-shadow: 0px 0px 0px 2px var(--lightGray);
 }
 </style>

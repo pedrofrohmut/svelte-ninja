@@ -1,4 +1,7 @@
 :root {
+  --gray: #aaa;
+  --lightGray: #e5e5e5;
+  --red: #d91b42;
   font-size: 14px;
 }
 
