@@ -1,8 +1,13 @@
 :root {
+  --darkGray: #252327;
   --gray: #aaa;
   --lightGray: #e5e5e5;
   --red: #d91b42;
   font-size: 14px;
+}
+
+*, *::before, *::after {
+	box-sizing: border-box;
 }
 
 html, body {
@@ -13,11 +18,15 @@ html, body {
 
 body {
   font-size: 1.2rem;
-	color: #e5e5e5;
-  background-color: #252327;
+	color: var(--lightGray);
+  background-color: var(--darkGray);
 	margin: 0;
 	box-sizing: border-box;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 a {
@@ -40,12 +49,6 @@ label {
 input, button, select, textarea {
 	font-family: inherit;
 	font-size: inherit;
-	-webkit-padding: 0.4em 0;
-	padding: 0.4em;
-	margin: 0 0 0.5em 0;
-	box-sizing: border-box;
-	border: 1px solid #ccc;
-	border-radius: 2px;
 }
 
 input:disabled {

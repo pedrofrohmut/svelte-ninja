@@ -49,6 +49,5 @@ li:last-child {
   color: var(--red);
   border-bottom: 2px solid var(--red);
   padding-bottom: 8px;
-  opacity: 0.85;
 }
 </style>
