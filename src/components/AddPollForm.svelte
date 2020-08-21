@@ -2,6 +2,8 @@
 import { createEventDispatcher } from "svelte"
 import { v4 as uuid } from "uuid"
 
+import PollStore from "../stores/PollStore"
+
 import Button from "../shared/Button.svelte"
 
 const fields = { question: "", answerA: "", answerB: "" }
@@ -16,8 +18,7 @@ const getAnswerAErrors = (a) => a.trim().length < 1 ? "Answer A cannot be empty"
 const getAnswerBErrors = (a) => a.trim().length < 1 ? "Answer B cannot be empty" : ""
 
 const validateFormByErrors = (errors) => {
-  const values = Object.values(errors)
-  const errorMessages = values.filter(e => e !== "")
+  const errorMessages = Object.values(errors).filter(e => e !== "")
   return errorMessages.length === 0
 }
 
@@ -29,7 +30,8 @@ const handleSubmit = (e) => {
   const isValidForm = validateFormByErrors(errors)
   if (isValidForm) {
     const poll = { ...fields, id: uuid() , votesA: 0, votesB: 0 }
-    dispatch("add", poll)
+    PollStore.update(currentPolls => [ ...currentPolls, poll ])
+    dispatch("add")
   }
 }
 </script>

@@ -1,5 +1,5 @@
 <script>
-import { createEventDispatcher } from "svelte"
+import PollStore from "../stores/PollStore"
 
 import Card from "../shared/Card.svelte"
 
@@ -9,10 +9,16 @@ $: totalVotes = poll.votesA + poll.votesB
 $: percentA = Math.floor((poll.votesA / totalVotes) * 100)
 $: percentB = Math.floor((poll.votesB / totalVotes) * 100)
 
-const dispatch = createEventDispatcher()
-
 const handleVote = (votedOption, voteId) => {
-  dispatch("vote", { votedOption, voteId })
+  PollStore.update((polls) => {
+    polls.forEach((poll) => {
+      if (poll.id === voteId) {
+        if (votedOption === "a") poll.votesA++
+        if (votedOption === "b") poll.votesB++
+      }
+    })
+    return polls
+  })
 }
 </script>
 
@@ -20,12 +26,12 @@ const handleVote = (votedOption, voteId) => {
   <div class="poll">
     <div class="question">{poll.question}</div>
     <div class="total-votes">Total votes: {totalVotes}</div>
-    <div class="answer" on:click={() => handleVote('a', poll.id)}>
-      <div class="percent percent-a" style="width: {percentA}%" />
+    <div class="answer" on:click="{() => handleVote('a', poll.id)}">
+      <div class="percent percent-a" style="width: {percentA}%"></div>
       <div class="answer-text">{poll.answerA} ({poll.votesA})</div>
     </div>
-    <div class="answer" on:click={() => handleVote('b', poll.id)}>
-      <div class="percent percent-b" style="width: {percentB}%" />
+    <div class="answer" on:click="{() => handleVote('b', poll.id)}">
+      <div class="percent percent-b" style="width: {percentB}%"></div>
       <div class="answer-text">{poll.answerB} ({poll.votesB})</div>
     </div>
   </div>

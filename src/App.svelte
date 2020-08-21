@@ -5,40 +5,25 @@ import Tabs from "./shared/Tabs.svelte"
 import PollList from "./components/PollList.svelte"
 import AddPollForm from "./components/AddPollForm.svelte"
 
-const items = Object.freeze(["Current Polls", "Add New Poll"])
-let activeItem = items[0]
+const tabNames = Object.freeze(["Current Polls", "Add New Poll"])
+export const CURRENT_POLLS = tabNames[0]
+export const ADD_NEW_POLL = tabNames[1]
 
-const handleTabChange = (customEvent) => {
-  const newTab = customEvent.detail
-  activeItem = newTab
-}
+let activeTab = CURRENT_POLLS
 
-const handleAdd = (customEvent) => {
-  const newPoll = customEvent.detail
-  polls = [ ...polls, newPoll ]
-  activeItem = items[0]
-}
+const handleTabChange = (customEvent) => { activeTab = customEvent.detail }
 
-const handleVote = (customEvent) => {
-  const { votedOption, voteId } = customEvent.detail
-  polls.forEach(poll => {
-    if (poll.id === voteId) {
-      if (votedOption === "a") poll.votesA++
-      if (votedOption === "b") poll.votesB++
-    }
-  })
-  polls = polls
-}
+const handleAdd = () => { activeTab = CURRENT_POLLS }
 </script>
 
 <Header />
 <main>
-  <Tabs {activeItem} {items} on:tabChange={handleTabChange}/>
-  {#if activeItem === items[0]}
+  <Tabs {activeTab} {tabNames} on:tabChange={handleTabChange} />
+  {#if activeTab === CURRENT_POLLS}
     <!-- <pre>{JSON.stringify(polls, null, 2)}</pre> -->
-    <PollList on:vote={handleVote} />
+    <PollList />
   {/if}
-  {#if activeItem === items[1]}
+  {#if activeTab === ADD_NEW_POLL}
     <AddPollForm on:add={handleAdd} />
   {/if}
 </main>

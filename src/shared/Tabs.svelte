@@ -1,21 +1,21 @@
 <script>
 import { createEventDispatcher } from "svelte"
 
-export let items
-export let activeItem
+export let tabNames
+export let activeTab
 
 const dispatch = createEventDispatcher()
 </script>
 
 <div class="tabs">
   <ul>
-    {#each items as item}
+    {#each tabNames as tabName}
       <li>
         <div
-          class={item === activeItem ? "active" : ""}
-          on:click={() => dispatch("tabChange", item)}
+          class={tabName === activeTab ? "active" : ""}
+          on:click={() => dispatch("tabChange", tabName)}
         >
-          {item}
+          {tabName}
         </div>
       </li>
     {/each}

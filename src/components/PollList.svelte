@@ -5,7 +5,7 @@ import PollListItem from "./PollListItem.svelte"
 
 <div class="poll-list">
   {#each $PollStore as poll (poll.id)}
-    <PollListItem {poll} on:vote />
+    <PollListItem {poll} />
   {/each}
 </div>
 
