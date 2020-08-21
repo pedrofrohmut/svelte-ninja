@@ -20,7 +20,6 @@ const handleAdd = () => { activeTab = CURRENT_POLLS }
 <main>
   <Tabs {activeTab} {tabNames} on:tabChange={handleTabChange} />
   {#if activeTab === CURRENT_POLLS}
-    <!-- <pre>{JSON.stringify(polls, null, 2)}</pre> -->
     <PollList />
   {/if}
   {#if activeTab === ADD_NEW_POLL}
@@ -32,6 +31,8 @@ const handleAdd = () => { activeTab = CURRENT_POLLS }
 <style>
 main {
   max-width: 960px;
+  width: 100%;
+  min-width: 480px;
   margin: 40px auto;
 }
 </style>
