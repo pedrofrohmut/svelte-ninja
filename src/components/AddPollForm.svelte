@@ -28,7 +28,7 @@ const handleSubmit = (e) => {
   errors.answerB = getAnswerBErrors(fields.answerB)
   const isValidForm = validateFormByErrors(errors)
   if (isValidForm) {
-    const poll = { ...fields, id: uuid() , voteA: 0, voteB: 0 }
+    const poll = { ...fields, id: uuid() , votesA: 0, votesB: 0 }
     dispatch("add", poll)
   }
 }

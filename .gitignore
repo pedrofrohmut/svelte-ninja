@@ -6,3 +6,7 @@
 # VIM
 **/*.swp
 **/*.swo
+
+# ENV
+.env
+.env-development

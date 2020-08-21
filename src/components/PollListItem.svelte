@@ -6,6 +6,8 @@ import Card from "../shared/Card.svelte"
 export let poll
 
 $: totalVotes = poll.votesA + poll.votesB
+$: percentA = Math.floor((poll.votesA / totalVotes) * 100)
+$: percentB = Math.floor((poll.votesB / totalVotes) * 100)
 
 const dispatch = createEventDispatcher()
 
@@ -19,12 +21,12 @@ const handleVote = (votedOption, voteId) => {
     <div class="question">{poll.question}</div>
     <div class="total-votes">Total votes: {totalVotes}</div>
     <div class="answer" on:click={() => handleVote('a', poll.id)}>
-      <div class="percent percent-a"></div>
-      <span>{poll.answerA} ({poll.votesA})</span>
+      <div class="percent percent-a" style="width: {percentA}%" />
+      <div class="answer-text">{poll.answerA} ({poll.votesA})</div>
     </div>
     <div class="answer" on:click={() => handleVote('b', poll.id)}>
-      <div class="percent percent-b"></div>
-      <span>{poll.answerB} ({poll.votesB})</span>
+      <div class="percent percent-b" style="width: {percentB}%" />
+      <div class="answer-text">{poll.answerB} ({poll.votesB})</div>
     </div>
   </div>
 </Card>
@@ -47,15 +49,34 @@ const handleVote = (votedOption, voteId) => {
 .answer {
   cursor: pointer;
   position: relative;
+  margin-bottom: 12px;
+  color: var(--lightGray);
+  font-weight: 600;
 }
 
 .answer:hover {
   opacity: 0.6;
 }
 
-span {
+.answer-text {
   display: inline-block;
-  margin-bottom: 10px;
-  color: var(--gray);
+  padding: 12px 0 7px;
+  z-index: -1;
+}
+
+.percent {
+  position: absolute;
+  top: calc(100% + 4px);
+  height: 5px;
+}
+
+.percent-a {
+  border-left: 4px solid var(--red);
+  background-color: rgba(217, 27, 66, 0.7);
+}
+
+.percent-b {
+  border-left: 4px solid var(--green);
+  background-color: rgba(69, 196, 150, 0.7);
 }
 </style>

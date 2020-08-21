@@ -1,11 +1,10 @@
 <script>
+import PollStore from "../stores/PollStore"
 import PollListItem from "./PollListItem.svelte"
-
-export let polls = []
 </script>
 
 <div class="poll-list">
-  {#each polls as poll (poll.id)}
+  {#each $PollStore as poll (poll.id)}
     <PollListItem {poll} on:vote />
   {/each}
 </div>
